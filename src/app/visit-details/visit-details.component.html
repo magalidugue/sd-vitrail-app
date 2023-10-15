@@ -1,0 +1,12 @@
+<h1>{{visit?.title}}</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <img [src]="visit?.imageUrl" [alt]="visit?.title">
+    </div>
+    <div class="col-6">
+      <span>{{visit?.bigDescription}}</span>
+    </div>
+    <button type="button" class="btn btn-warning" (click)="navigateToBooking(visit.id)">Réserver</button>
+  </div>
+</div>

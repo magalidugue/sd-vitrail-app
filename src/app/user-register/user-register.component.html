@@ -1,0 +1,33 @@
+<div class="container">
+  <form *ngIf="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="firstName" class="form-label">Prénom</label>
+      <input type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName">
+    </div>
+    <div class="mb-3">
+      <label for="lastName" class="form-label">Nom</label>
+      <input type="text" class="form-control" id="lastName" name="lastName" formControlName="lastName">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Adresse Email</label>
+      <input type="email" class="form-control" id="email" name="email" formControlName="email">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Mot de passe</label>
+      <input type="password" class="form-control" id="password" name="password" formControlName="password">
+    </div>
+    <div class="mb-3">
+      <label for="passwordConfirmation" class="form-label">Confirmez le mot de passe</label>
+      <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" formControlName="passwordConfirmation">
+    </div>
+    <button type="submit" [disabled]="!registerForm.valid" class="btn btn-warning">Enregistrer</button>
+  </form>
+</div>
+
+<div>
+  {{registerForm?.value | json }}
+</div>
+<div>
+  {{registerForm?.status | json }}
+</div>
+
