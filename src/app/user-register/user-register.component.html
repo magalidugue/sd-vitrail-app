@@ -2,32 +2,49 @@
   <form *ngIf="registerForm" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
       <label for="firstName" class="form-label">Prénom</label>
-      <input type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName">
+      <input [ngClass]="{'hasError': registerForm.get('firstName')?.touched && registerForm.get('firstName')?.hasError('required')}" type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName">
+      <span class="validation-error" *ngIf="registerForm.controls['firstName'].touched && registerForm.controls['firstName'].errors?.['required']">
+        Le prénom est obligatoire
+      </span>
     </div>
     <div class="mb-3">
       <label for="lastName" class="form-label">Nom</label>
-      <input type="text" class="form-control" id="lastName" name="lastName" formControlName="lastName">
+      <input [ngClass]="{'hasError': registerForm.get('lastName')?.touched && registerForm.get('lastName')?.hasError('required')}" type="text" class="form-control" id="lastName" name="lastName" formControlName="lastName">
+      <span class="validation-error" *ngIf="registerForm.controls['lastName'].touched && registerForm.controls['lastName'].errors?.['required']">
+        Le nom est obligatoire
+      </span>
     </div>
     <div class="mb-3">
       <label for="email" class="form-label">Adresse Email</label>
-      <input type="email" class="form-control" id="email" name="email" formControlName="email">
+      <input [ngClass]="{'hasError': registerForm.get('email')?.touched && registerForm.get('email')?.hasError('required')}" type="email" class="form-control" id="email" name="email" formControlName="email">
+      <span class="validation-error" *ngIf="registerForm.controls['email'].touched && registerForm.controls['email'].errors?.['required']">
+        L'email est obligatoire
+      </span><br>
+      <span class="validation-error" *ngIf="registerForm.controls['email'].dirty && registerForm.controls['email'].invalid">
+        L'email est invalide
+      </span>
     </div>
     <div class="mb-3">
       <label for="password" class="form-label">Mot de passe</label>
-      <input type="password" class="form-control" id="password" name="password" formControlName="password">
+      <input [ngClass]="{'hasError': registerForm.get('password')?.touched && registerForm.get('password')?.hasError('required')}" type="password" class="form-control" id="password" name="password" formControlName="password">
+      <span class="validation-error" *ngIf="registerForm.controls['password'].touched && registerForm.controls['password'].errors?.['required']">
+        Vous devez choisir un mot de passe
+      </span><br>
+      <span class="validation-error" *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].invalid">
+        Le mot de passe n'est pas valide
+      </span>
     </div>
     <div class="mb-3">
       <label for="passwordConfirmation" class="form-label">Confirmez le mot de passe</label>
-      <input type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" formControlName="passwordConfirmation">
+      <input [ngClass]="{'hasError': registerForm.get('passwordConfirmation')?.touched && registerForm.get('passwordConfirmation')?.hasError('required')}" type="password" class="form-control" id="passwordConfirmation" name="passwordConfirmation" formControlName="passwordConfirmation">
+      <span class="validation-error" *ngIf="registerForm.controls['passwordConfirmation'].touched && registerForm.controls['passwordConfirmation'].errors?.['required']">
+        Vous devez confirmer le mot de passe
+      </span><br>
+      <span class="validation-error" *ngIf="registerForm.controls['passwordConfirmation'].dirty && registerForm.controls['passwordConfirmation'].invalid">
+        Les mots de passe ne sont pas identiques
+      </span>
     </div>
     <button type="submit" [disabled]="!registerForm.valid" class="btn btn-warning">Enregistrer</button>
   </form>
-</div>
-
-<div>
-  {{registerForm?.value | json }}
-</div>
-<div>
-  {{registerForm?.status | json }}
 </div>
 
